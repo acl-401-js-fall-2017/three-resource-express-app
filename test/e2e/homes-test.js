@@ -57,7 +57,7 @@ describe('Homes API', ()=> {
             .then((res) => assert.deepEqual(res.body,[]));
     });
 
-    it.only('updates the resource', () => {
+    it.skip('updates the resource', () => {
         let id = null;
         return request.post('/api/homes')
             .send(home)
