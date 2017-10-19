@@ -26,7 +26,7 @@ For _each_ of the three resources (meaning three routes):
     * Unit test the model showing the model failing validation and test a successful model.
     * Implement the validation
     * For one of your models:
-        * Include a complex object property (a property that has subfields, like an address with city, state, zip)
+        * Include a complex object property (a property that has sub fields, like an address with city, state, zip)
     * For one of your models:
         * Include an array property (a property that holds zero or more of some values)
 * Create HTTP REST routes:

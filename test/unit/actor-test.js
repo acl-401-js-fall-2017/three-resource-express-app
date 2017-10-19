@@ -1,7 +1,7 @@
 const {assert} = require('chai');
 const Actor = require('../../lib/models/actor.js');
 
-describe.only('Actor Model', () => {
+describe('Actor Model', () => {
     it('valid model', () => {
         const actor = new Actor({
             name: 'Edward Norton',
