@@ -46,6 +46,13 @@ describe('boneRouter: ', () => {
                     assert.ok(res.body._id);
                 });
         });
+
+        it('returns errors when the posted object is invalid', () => {
+            delete humerusInput.name;
+            return request.post('/api/bones')
+                .send(humerusInput)
+                .catch(err => assert.equal(err.name.kind, 'required'));
+        });
     });
     describe('DELETE:id', () => {
 
