@@ -58,4 +58,13 @@ describe('muscle model: ', () => {
             !ls.validateSync()
         );
     });
+
+    it('invalidates a muscle with an object for a name', () => {
+        lsData.name = {
+            scientific: 'latissimus dorsi',
+            common: 'lats'
+        };
+        const ls = new Muscle(lsData);
+        assert.equal(ls.validateSync().errors.name.kind, 'String');
+    });
 });
