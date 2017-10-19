@@ -6,8 +6,8 @@ describe('Team model', () => {
     it('Validates a  good model', () => {
         const team = new Team({
             make: 'Ferrari',
-            drivers: [ { name: 'Michel Schumacker'} ],
-            class: [{ name: 'Formula'}],
+            drivers:  [ 'Michel Schumacker','Speed Racer' ],
+            class: ['Formula'],
             trophies: 45
         });
         assert.equal(team.validateSync(), undefined);
@@ -17,8 +17,8 @@ describe('Team model', () => {
         const team = new Team({});
         const { errors } = team.validateSync();
         assert.equal(errors['make'].kind, 'required');
-        // assert.equal(errors['drivers.name'].kind, 'required');
-        // assert.equal(errors['class.name'].kind, 'required');
+        assert.equal(errors['drivers'].kind, 'required');
+        assert.equal(errors['class'].kind, 'required');
     });
 
 
