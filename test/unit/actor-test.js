@@ -15,4 +15,11 @@ describe.only('Actor Model', () => {
         const {errors} = actor.validateSync();
         assert.equal(errors['name'].kind, 'required');
     });
+    it('oscar noms cannot exceed max',() => {
+        const actor = new Actor({
+            oscarNoms: 21
+        });
+        const {errors} = actor.validateSync();
+        assert.equal(errors['oscarNoms'].kind, 'max');
+    });
 });
