@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const Actor = require('../../lib/models/actor');
-// const Movie = require('../lib/models/movie');
-// const Studio = require('../lib/models/studio');
+const Movie = require('../../lib/models/movie');
+// const Studio = require('../../lib/models/studio');
 
 describe('Actor Model', () => {
     
@@ -20,33 +20,22 @@ describe('Actor Model', () => {
         assert.equal(errors['name'].kind, 'required');
     });
     
-    // it('Movies starred in', () => {
-    //     const actor = new Actor({ 
-    //         movies: [
-    //             { name: 'Notebook' },
-    //             { name: 'NOT NOTEPAD' }
-    //         ] 
-    //     });
-    //     const { errors } = actor.validateSync();
-    //     assert.equal(errors['movies.1.name'].kind, 'enum');
-    // });
-
 });
 
-// describe('Movie Model', () => {
+describe('Movie Model', () => {
 
-//     it('good model', () => {
-//         const movie = new Movie({
-//             title: 'Shawshank Redemption',
-//             releaseYear: 1994,
-//         });
+    it('good model', () => {
+        const movie = new Movie({
+            title: 'Shawshank Redemption',
+            releaseYear: 1994,
+        });
 
-//         assert.equal(movie.validateSync(), undefined);
-//     });
+        assert.equal(movie.validateSync(), undefined);
+    });
 
-//     it('required field', () => {
-//         const movie = new Movie({});
-//         const { errors } = movie.validateSync();
-//         assert.equal(errors['title'].kind, 'required');
-//     });
-// });
+    it('required field', () => {
+        const movie = new Movie({});
+        const { errors } = movie.validateSync();
+        assert.equal(errors['title'].kind, 'required');
+    });
+});
