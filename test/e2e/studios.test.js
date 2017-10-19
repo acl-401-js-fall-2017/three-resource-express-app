@@ -5,7 +5,7 @@ const assert = require('chai').assert;
 describe ('studios API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
-    const studio1 = { name: 'Paramount', address: { state: 'CA'} };
+    const studio1 = {name: 'Paramount', address: { state: 'CA'} };
 
     it('saves with id', () => {
         return request.post('/api/studios')
@@ -88,7 +88,7 @@ describe ('studios API', () => {
 
     });
 
-    it('changes a saved book with id', () => {
+    it('changes a saved studio with id', () => {
         let update = { name: 'Disney' };
         let savedMovie =null;
         return request.post('/api/studios')

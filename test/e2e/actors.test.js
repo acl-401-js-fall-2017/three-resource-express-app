@@ -5,7 +5,7 @@ const assert = require('chai').assert;
 describe ('actors API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
-    const actor1 = { name: 'Popeye', gender: 'male'};
+    const actor1 = {name: 'Popeye', gender: 'male'};
 
     it('saves with id', () => {
         return request.post('/api/actors')
@@ -88,7 +88,7 @@ describe ('actors API', () => {
 
     });
 
-    it('changes a saved book with id', () => {
+    it('changes a saved actor with id', () => {
         let update = { name: 'Bluto' };
         let savedActor =null;
         return request.post('/api/actors')

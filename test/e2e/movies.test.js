@@ -5,7 +5,7 @@ const assert = require('chai').assert;
 describe ('movies API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
-    const movie1 = { title: 'Popeye', length: 114};
+    const movie1 = {title: 'Popeye', length: 114};
 
     it('saves with id', () => {
         return request.post('/api/movies')
