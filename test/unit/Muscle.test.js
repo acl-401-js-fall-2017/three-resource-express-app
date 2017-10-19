@@ -23,7 +23,7 @@ describe('muscle model: ', () => {
             insertion: 'intertubercular groove of humerus',
             action: {
                 joint: 'glenohumeral',
-                on: 'humerus',
+                actsOn: 'humerus',
                 movement: ['adduction', 'extention', 'internal rotation']
             },
             innervation: 'thoracodorsal'
@@ -35,7 +35,7 @@ describe('muscle model: ', () => {
             action: [
                 {
                     joint: 'acromioclavicular',
-                    on: 'scapula',
+                    actsOn: 'scapula',
                     movement: 'elevation'
                 },
                 {
