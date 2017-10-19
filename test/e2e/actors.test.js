@@ -2,7 +2,7 @@ const request = require('./request');
 const mongoose = require('mongoose');
 const assert = require('chai').assert;
 
-describe ('books API', () => {
+describe ('actors API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
     const actor1 = { name: 'Popeye', gender: 'male'};
