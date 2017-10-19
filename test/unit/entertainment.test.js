@@ -39,3 +39,13 @@ describe('Movie Model', () => {
         assert.equal(errors['title'].kind, 'required');
     });
 });
+
+// describe('Studio Model', () => {
+
+//     it('good model', () => {
+//         const studio = new Studio({
+//             bigSixStudios: 'Paramount',
+//             yearFounded: 1912
+//         });
+//     });
+// });
