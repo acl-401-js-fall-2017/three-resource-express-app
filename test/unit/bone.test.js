@@ -33,7 +33,6 @@ describe('Bone model: ', () => {
     it('creates a valid Bone object', () => {
         const humerus = new Bone(humerusInput);
         assert.ok(humerus instanceof Bone);
-        const invalid = humerus.validate();
-        assert.ok(!humerus.validate());
+        assert.ok(!humerus.validateSync());
     });
 });
