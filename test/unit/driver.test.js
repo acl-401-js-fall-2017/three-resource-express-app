@@ -1,7 +1,7 @@
 const { assert } = require('chai');
 const Driver = require('../../lib/models/driver');
 
-describe('Rocket model', () => {
+describe('Driver model', () => {
 
     it('Validates a  good model', () => {
         const driver = new Driver({
