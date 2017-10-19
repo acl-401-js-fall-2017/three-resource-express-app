@@ -42,4 +42,19 @@ describe('Nerve model: ', () => {
             !tibial.validateSync()
         );
     });
+
+    it('invalidates a nerve given array of objects for innervates', () => {
+        nerveData[0].innervates = [
+            {
+                branch: 'mandibular',
+                muscles: ['masseter', 'temporal pterygoid', 'medial pterygoid', 'lateral pterygoid']
+            },
+            {
+                branch: 'maxillary',
+                muscles: ['tensor veli palatini', 'mylohyoid', 'digastric', 'tensor tympani']
+            }
+        ];
+        const tgn = new Nerve(nerveData[0]);
+        assert.equal(tgn.validateSync().errors.innervates.kind, 'Array');
+    });
 });
