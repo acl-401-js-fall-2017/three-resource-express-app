@@ -1,5 +1,6 @@
 const db = require('./db');
 const request = require('./request');
+const {assert} = require('chai');
 const Bone = require('../../lib/models/Bone');
 
 describe('boneRouter: ', () => {
