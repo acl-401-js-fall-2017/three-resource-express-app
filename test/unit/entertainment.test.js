@@ -14,6 +14,12 @@ describe('Actor Model', () => {
         assert.equal(Actor.validateSync(), undefined);
     });
 
+    it('required field', () => {
+        const actor = new Actor({});
+        const { errors } = actor.validateSync();
+        assert.equal(errors['name'].kind, 'required');
+    });
+    
     // it('Movies starred in', () => {
     //     const actor = new Actor({ 
     //         movies: [
@@ -25,11 +31,6 @@ describe('Actor Model', () => {
     //     assert.equal(errors['movies.1.name'].kind, 'enum');
     // });
 
-    // it('required field', () => {
-    //     const actor = new Actor({});
-    //     const { errors } = actor.validateSync();
-    //     assert.equal(errors['name'].kind, 'required');
-    // });
 });
 
 // describe('Movie Model', () => {
