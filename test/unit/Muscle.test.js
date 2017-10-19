@@ -1,7 +1,7 @@
 const {assert} = require('chai');
 const Muscle = require('../../lib/models/Muscle');
 
-describe('muscle model: ', () => {
+describe('Muscle model: ', () => {
 
     let tflData = null;
     let ldData = null;
