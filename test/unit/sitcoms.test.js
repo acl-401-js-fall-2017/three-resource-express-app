@@ -14,6 +14,15 @@ describe('Sitcom model', ()=>{
 
     });
 
+    it('bad model', () => {
+        const sitcom = new Sitcom({
+            title: 1990,
+            releaseYear: 'The Fresh Prince of Bel-Air'
+        });
+        assert.deepEqual(sitcom.validateSync().errors.releaseYear.kind, 'Number');
+
+    });
+
 
 
 });
