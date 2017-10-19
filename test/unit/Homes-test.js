@@ -2,6 +2,7 @@ const Home = require('../../lib/models/homes');
 const { assert } = require('chai');
 
 describe('addresses test', ()=> {
+  
     it('should validate home with valid state', ()=> {
         const home = new Home({
             type: 'house',
@@ -14,6 +15,7 @@ describe('addresses test', ()=> {
         });
         assert.equal(home.validateSync(), undefined);
     });
+
     it('should validate home without valid state', ()=> {
         const home = new Home({
             type: 'house',
@@ -26,4 +28,5 @@ describe('addresses test', ()=> {
         });
         assert.equal(home.validateSync().errors['address.state'].kind, 'enum');
     });
+
 });

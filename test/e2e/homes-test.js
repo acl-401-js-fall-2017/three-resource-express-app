@@ -32,7 +32,6 @@ describe('Homes API', ()=> {
                 return request.get(`/api/homes/${id}`);
             })
             .then( res=> assert.deepEqual(res.body.type, home.type));
-
     });
 
     it('gets all', () => {
