@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const Actor = require('../lib/models/actor');
+const Actor = require('../../lib/models/actor');
 // const Movie = require('../lib/models/movie');
 // const Studio = require('../lib/models/studio');
 
@@ -11,7 +11,7 @@ describe('Actor Model', () => {
             movies: ['La La Land', 'Notebook', 'Crazy, Stupid Love'],
         });
 
-        assert.equal(Actor.validateSync(), undefined);
+        assert.equal(actor.validateSync(), undefined);
     });
 
     it('required field', () => {
