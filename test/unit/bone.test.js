@@ -35,4 +35,11 @@ describe('Bone model: ', () => {
         assert.ok(humerus instanceof Bone);
         assert.ok(!humerus.validateSync());
     });
+    
+    it('invalidates input without a name field', () => {
+        delete humerusInput.name;
+        const humerus = new Bone(humerusInput);
+        assert.ok(humerus instanceof Bone);
+        assert.equal(humerus.validateSync().name.type, 'required');    
+    });
 });
