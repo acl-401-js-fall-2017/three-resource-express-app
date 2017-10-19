@@ -41,4 +41,10 @@ describe('Bone model: ', () => {
         const humerus = new Bone(humerusInput);
         assert.equal(humerus.validateSync().errors.name.kind, 'required');    
     });
+    
+    it('invalidates input with an invalid type enum value', () => {
+        humerusInput.type = 'squishy';
+        const humerus = new Bone(humerusInput);
+        assert.equal(humerus.validateSync().errors.type.kind, 'enum');    
+    });
 });
