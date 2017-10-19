@@ -2,23 +2,23 @@ const request = require('./request');
 const mongoose = require('mongoose');
 const assert = require('chai').assert;
 
-describe ('movies API', () => {
+describe ('studios API', () => {
     beforeEach(() => mongoose.connection.dropDatabase());
 
-    const movie1 = { title: 'Popeye', length: 114};
+    const studio1 = { name: 'Paramount', address: { state: 'CA'} };
 
     it('saves with id', () => {
-        return request.post('/api/movies')
-            .send(movie1)
+        return request.post('/api/studios')
+            .send(studio1)
             .then(res => {
                 const savedMovie = res.body;
-                assert.ok(savedMovie ._id);
-                assert.equal(savedMovie.title, movie1.title);
+                assert.ok(savedMovie._id);
+                assert.equal(savedMovie.name, studio1.name);
             });
     });
 
     it('does not save if there is validation error', () =>{
-        return request.post('/api/movies')
+        return request.post('/api/studios')
             .send({})
             .then(() => { throw new Error();},
                 err => {
@@ -28,16 +28,16 @@ describe ('movies API', () => {
 
     it('gets by id', () => {
         let savedMovie = null;
-        return request.post('/api/movies')
-            .send(movie1)
+        return request.post('/api/studios')
+            .send(studio1)
             .then(res => {
                 savedMovie = res.body;
-                return request.get(`/api/movies/${savedMovie._id}`);
+                return request.get(`/api/studios/${savedMovie._id}`);
             });
     });
 
     it('get by id return 404 for bad id', () => {
-        return request.get('/api/movies/59dfeaeb083bf9beecc97ce8')
+        return request.get('/api/studios/59dfeaeb083bf9beecc97ce8')
             .then(
                 ()=> {throw new Error();},
                 err => {
@@ -46,11 +46,11 @@ describe ('movies API', () => {
             );
     });
 
-    it('get all the movies', () => {
-        const movie2 = { title: 'Tom & Jerry', length: 100};
+    it('get all the studios', () => {
+        const movie2 = { name: 'Universal', address: { state: 'CA'}};
         
-        const movieCollection = [movie1, movie2].map(movie => {
-            return request.post('/api/movies')
+        const movieCollection = [studio1, movie2].map(movie => {
+            return request.post('/api/studios')
                 .send(movie)
                 .then(res => res.body);
         });
@@ -59,7 +59,7 @@ describe ('movies API', () => {
         return Promise.all(movieCollection) 
             .then(_saved => {
                 saved = _saved;
-                return request.get('/api/movies');
+                return request.get('/api/studios');
             })
             .then(res => {
                 assert.deepEqual(res.body, saved);
@@ -68,11 +68,11 @@ describe ('movies API', () => {
 
     it('deletes with id', () => {
         let savedMovie =null;
-        return request.post('/api/movies')
-            .send(movie1)
+        return request.post('/api/studios')
+            .send(studio1)
             .then(res => {
                 savedMovie = res.body;
-                return request.delete(`/api/movies/${savedMovie._id}`);
+                return request.delete(`/api/studios/${savedMovie._id}`);
             })
             .then(res => {
                 assert.deepEqual(res.body, { removed: true });
@@ -81,25 +81,24 @@ describe ('movies API', () => {
     });
 
     it('returns false when deletes with bad id', () => {
-        return request.delete('/api/movies/59dfeaeb083bf9beecc97ce6')
+        return request.delete('/api/studios/59dfeaeb083bf9beecc97ce6')
             .then(res => {
                 assert.deepEqual(res.body, { removed: false });
             });
 
     });
 
-    it('changes a saved movie with id', () => {
-        let update = { title: 'Flintstones' };
+    it('changes a saved book with id', () => {
+        let update = { name: 'Disney' };
         let savedMovie =null;
-        return request.post('/api/movies')
-            .send(movie1)
+        return request.post('/api/studios')
+            .send(studio1)
             .then(res => {
                 savedMovie = res.body;
-                return request.put(`/api/movies/${savedMovie._id}`).send(update);
+                return request.put(`/api/studios/${savedMovie._id}`).send(update);
             })
             .then(res => {
-                assert.equal(res.body.title, update.title); 
-                    
+                assert.equal(res.body.name, update.name); 
             });
 
     });
