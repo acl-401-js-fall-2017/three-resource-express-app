@@ -40,4 +40,14 @@ describe('Cartoon API', ()=>{
 
     });
 
+    it('get by id returns 404 for bad id', () => {
+        return request.get('/api/cartoons/59dfeaeb083bf9beecc97ce8')
+            .then(
+                () => { throw new Error('Unexpected successful response'); },
+                err => {
+                    assert.equal(err.status, 404);    
+                }
+            );
+    });
+
 });
