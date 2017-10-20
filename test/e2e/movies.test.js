@@ -75,7 +75,7 @@ describe('Movies api', () => {
             });
     });
 
-    it.only('changes saved movie with id', () => {
+    it('changes saved movie with id', () => {
         let update = { title: 'Rambo'};
         return request.post('/api/movies')
             .send(movie1)
