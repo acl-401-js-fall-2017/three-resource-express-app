@@ -101,17 +101,18 @@ describe('Cartoon API', ()=>{
 
         let savedCartoon = null;
 
-        return request.post('/teams')
+        return request.post('/api/cartoons')
             .send(pokemonn)
             .then(res => savedCartoon = res.body)
             .then(() => {
                 pokemonn.name = 'pokemon';
                 return request
-                    .put(`/cartoons/${savedCartoon._id}`)
+                    .put(`/api/cartoons/${savedCartoon._id}`)
                     .send( pokemonn );
             })
             .then( res => {
-                assert.deepEqual(res.body.name, 'pokemon');
+                console.log('IN THE TESTTTT',res.body);
+                assert.deepEqual(res.body.nModified === 1, true);
             });
 
     });
