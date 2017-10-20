@@ -73,4 +73,24 @@ describe('Cartoon API', ()=>{
             });
     });
 
+    it('delete by id', () => {
+        let cartoon = null;
+        return request.post('/api/cartoons')
+            .send(pokemon)
+            .then(res => {
+                cartoon = res.body;
+                return request.delete(`/api/cartoons/${cartoon._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request.get(`/api/cartoons/${cartoon._id}`);                
+            })
+            .then(
+                () => { throw new Error('Unexpected successful response'); },
+                err => {
+                    assert.equal(err.status, 404);    
+                }
+            );
+    });
+
 });
