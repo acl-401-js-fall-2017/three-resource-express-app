@@ -50,4 +50,27 @@ describe('Cartoon API', ()=>{
             );
     });
 
+    it('gets all cartoons', () => {
+        const rugRats = {
+            name: 'Rugrats',
+            releaseYear: 1991
+        };
+
+        const posts = [rugRats, pokemon].map(cartoon => {
+            return request.post('/api/cartoons')
+                .send(cartoon)
+                .then(res => res.body);
+        });
+
+        let saved = null;
+        return Promise.all(posts)
+            .then(_saved => {
+                saved = _saved;
+                return request.get('/api/cartoons');
+            })
+            .then(res => {
+                assert.deepEqual(res.body, saved);
+            });
+    });
+
 });
