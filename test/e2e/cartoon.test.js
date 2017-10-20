@@ -111,7 +111,6 @@ describe('Cartoon API', ()=>{
                     .send( pokemonn );
             })
             .then( res => {
-                console.log('IN THE TESTTTT',res.body);
                 assert.deepEqual(res.body.nModified === 1, true);
             });
 
