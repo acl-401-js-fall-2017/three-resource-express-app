@@ -93,4 +93,27 @@ describe('Cartoon API', ()=>{
             );
     });
 
+    it('updates an item', () => {
+        const pokemonn = {
+            name: 'Pokemonnnn',
+            releaseYear: 1997
+        };
+
+        let savedCartoon = null;
+
+        return request.post('/teams')
+            .send(pokemonn)
+            .then(res => savedCartoon = res.body)
+            .then(() => {
+                pokemonn.name = 'pokemon';
+                return request
+                    .put(`/cartoons/${savedCartoon._id}`)
+                    .send( pokemonn );
+            })
+            .then( res => {
+                assert.deepEqual(res.body.name, 'pokemon');
+            });
+
+    });
+
 });
