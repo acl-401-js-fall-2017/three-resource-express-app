@@ -46,7 +46,7 @@ For _each_ of the three resources (meaning three routes):
 
 ## Bonus
 
-Create static html/css/js files that allow you to exercise soe of your API (start with `/GET`)
+Create static html/css/js files that allow you to exercise some of your API (start with `/GET`)
 
 #### Rubric:
 
