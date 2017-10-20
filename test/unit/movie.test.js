@@ -27,7 +27,5 @@ describe('Movie model' ,() => {
         });
         const { errors } = movie1.validateSync();
         assert.deepEqual(errors.length.kind, 'Number');
-    });
-
-    
+    });   
 });
