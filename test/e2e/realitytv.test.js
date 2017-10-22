@@ -79,7 +79,28 @@ describe('Realitytv API', () => {
             .then(res => {
                 assert.deepEqual(res.body, saved);
             });
+    })
+
+    it('delete by id', () => {
+        let realityShow = null;
+        return request.post('/api/realitytvs')
+            .send(realWorld)
+            .then(res => {
+                realityShow = res.body;
+                return request.delete(`/api/realitytvs/${realityShow._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request.get(`/api/cartoons/${realityShow._id}`);                
+            })
+            .then(
+                () => { throw new Error('Unexpected successful response'); },
+                err => {
+                    assert.equal(err.status, 404);    
+                }
+            );
     });
+
 
 
 
