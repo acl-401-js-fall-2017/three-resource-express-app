@@ -14,7 +14,7 @@ describe('Realitytv API', () => {
             { name: 'Norman Korpi', season: 1 },
             { name: 'Andre Comeau', season: 1 }
         ]
-    }
+    };
 
     it('Saves a reality show with id', ()=>{
         return request.post('/api/realitytvs')
@@ -24,6 +24,25 @@ describe('Realitytv API', () => {
                 assert.ok(realityShow._id);
                 assert.equal(realityShow.name, realWorld.name);
             });
+    });
+
+    it('Shoud get a reality show by id', ()=>{
+        let realityShow;
+        let id;
+
+        return request.post('/api/realitytvs')
+            .send(realityShow)
+            .then(res => {
+                realityShow = res.body;
+                id = realityShow._id;
+            })
+            .then(()=>{
+                return request.get(`/api/realitytvs/${id}`)
+                    .then(res =>{
+                        assert.deepEqual(res.body, realityShow);
+                    });
+            });
+
     });
 
 });
