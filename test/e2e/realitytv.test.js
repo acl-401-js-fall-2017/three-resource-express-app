@@ -31,7 +31,7 @@ describe('Realitytv API', () => {
         let id;
 
         return request.post('/api/realitytvs')
-            .send(realityShow)
+            .send(realWorld)
             .then(res => {
                 realityShow = res.body;
                 id = realityShow._id;
