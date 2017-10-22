@@ -101,6 +101,33 @@ describe('Realitytv API', () => {
             );
     });
 
+    it('updates an item', () => {
+        const cops = {
+            name: 'COOOOOOOOPS',
+            releaseYear: 1990,
+            cast: [
+                { name: 'Harry Newman', season: 1 }
+            ]
+        };
+
+
+        let savedRealitytv = null;
+
+        return request.post('/api/realitytvs')
+            .send(cops)
+            .then(res => savedRealitytv = res.body)
+            .then(() => {
+                cops.name = 'Cops';
+                return request
+                    .put(`/api/cartoons/${savedRealitytv._id}`)
+                    .send( cops );
+            })
+            .then( res => {
+                assert.deepEqual(res.body.nModified === 1, true);
+            });
+
+    });
+
 
 
 
