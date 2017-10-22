@@ -17,7 +17,7 @@ describe('Realitytv API', () => {
     }
 
     it('Saves a reality show with id', ()=>{
-        return request.post('/api/realitytv')
+        return request.post('/api/realitytvs')
             .send(realWorld)
             .then(res => {
                 const realityShow = res.body;
