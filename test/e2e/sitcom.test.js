@@ -77,5 +77,25 @@ describe('Sitcom API', () => {
             });
     });
 
+    it('delete by id', () => {
+        let sitcom = null;
+        return request.post('/api/sitcoms')
+            .send(freshPrince)
+            .then(res => {
+                sitcom = res.body;
+                return request.delete(`/api/sitcoms/${sitcom._id}`);
+            })
+            .then(res => {
+                assert.deepEqual(res.body, { removed: true });
+                return request.get(`/api/sitcoms/${sitcom._id}`);                
+            })
+            .then(
+                () => { throw new Error('Unexpected successful response'); },
+                err => {
+                    assert.equal(err.status, 404);    
+                }
+            );
+    });
+
 
 });
