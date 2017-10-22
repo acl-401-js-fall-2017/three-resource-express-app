@@ -97,5 +97,30 @@ describe('Sitcom API', () => {
             );
     });
 
+    it('updates an item', () => {
+        const familyMatters = {
+            title: 'Family Matterssssssssssssssssssssss',
+            releaseYear: 1989,
+            cast: [{actor: 'Reginald VelJohnson', role: 'Carl Otis Winslow'},
+                {actor: 'Jo Marie Payton ', role: 'Harriette Baines-Winslow'}]
+        };
+
+        let savedSitcom = null;
+
+        return request.post('/api/sitcoms')
+            .send(familyMatters)
+            .then(res => savedSitcom = res.body)
+            .then(() => {
+                familyMatters.name = 'Family Matters';
+                return request
+                    .put(`/api/sitcoms/${savedSitcom._id}`)
+                    .send( familyMatters );
+            })
+            .then( res => {
+                assert.deepEqual(res.body.nModified === 1, true);
+            });
+
+    });
+
 
 });
