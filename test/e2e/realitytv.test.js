@@ -119,7 +119,7 @@ describe('Realitytv API', () => {
             .then(() => {
                 cops.name = 'Cops';
                 return request
-                    .put(`/api/cartoons/${savedRealitytv._id}`)
+                    .put(`/api/realitytvs/${savedRealitytv._id}`)
                     .send( cops );
             })
             .then( res => {
