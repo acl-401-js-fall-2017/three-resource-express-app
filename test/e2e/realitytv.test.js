@@ -55,5 +55,32 @@ describe('Realitytv API', () => {
             );
     });
 
+    it('gets all cartoons', () => {
+        const cops = {
+            name: 'COPS',
+            releaseYear: 1990,
+            cast: [
+                { name: 'Harry Newman', season: 1 }
+            ]
+        };
+
+        const posts = [realWorld, cops].map(realityShow => {
+            return request.post('/api/realitytvs')
+                .send(realityShow)
+                .then(res => res.body);
+        });
+
+        let saved = null;
+        return Promise.all(posts)
+            .then(_saved => {
+                saved = _saved;
+                return request.get('/api/realitytvs');
+            })
+            .then(res => {
+                assert.deepEqual(res.body, saved);
+            });
+    });
+
+
 
 });
