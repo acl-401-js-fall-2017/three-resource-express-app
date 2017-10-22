@@ -34,7 +34,7 @@ describe('Sitcom API', () => {
                 id = sitcom._id;
             })
             .then(()=>{
-                return request.get(`/api/sitcms/${id}`)
+                return request.get(`/api/sitcoms/${id}`)
                     .then(res =>{
                         assert.deepEqual(res.body, sitcom);
                     });
