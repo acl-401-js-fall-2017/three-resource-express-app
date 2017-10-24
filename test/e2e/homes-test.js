@@ -56,7 +56,7 @@ describe('Homes API', ()=> {
             .then((res) => assert.deepEqual(res.body,[]));
     });
 
-    it.skip('updates the resource', () => {
+    it('updates the resource', () => {
         let id = null;
         return request.post('/api/homes')
             .send(home)
@@ -67,7 +67,7 @@ describe('Homes API', ()=> {
                     .send(update);
             })
             .then(() => {
-                return request.get('/api/homes/${id}');
+                return request.get(`/api/homes/${id}`);
             })
             .then((res) => {
                 assert.equal(res.body.type, 'trailer');
